@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.styles.css";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
 
@@ -16,7 +18,11 @@ export const Navbar = () => {
         password,
       },
     }).then((res) => {
-      console.log(res);
+      if (res.statusText === "OK") {
+        navigate("main");
+      } else {
+        alert("Kullanıcı adı veya şifre yanlış");
+      }
     });
   };
 

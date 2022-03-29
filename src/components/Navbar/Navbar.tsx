@@ -1,7 +1,25 @@
-import React from "react";
+import axios from "axios";
+import { useState } from "react";
 import "./Navbar.styles.css";
 
 export const Navbar = () => {
+  const [username, setUsername] = useState<string>();
+  const [password, setPassword] = useState<string>();
+
+  const onLogin = async () => {
+    console.log(username, password);
+    await axios({
+      method: "POST",
+      url: "https://notebase-api.herokuapp.com/api/student/login/",
+      data: {
+        username,
+        password,
+      },
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+
   return (
     <nav className="navbar">
       <div className="logo-container">
@@ -13,7 +31,21 @@ export const Navbar = () => {
       <div className="routes">
         <p className="route">About us</p>
         <p className="route">Team</p>
-        <div className="login-button">
+        <input
+          type="text"
+          className="text-input"
+          placeholder="Kullanıcı adınız"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+        <input
+          type="password"
+          className="text-input"
+          placeholder="Şifreniz"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        <div className="login-button" onClick={onLogin}>
           <p className="login">Login</p>
         </div>
       </div>

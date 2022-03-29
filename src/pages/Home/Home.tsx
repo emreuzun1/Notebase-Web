@@ -1,4 +1,3 @@
-import React from "react";
 import "./Home.styles.css";
 
 export const Home = () => {
@@ -8,7 +7,11 @@ export const Home = () => {
       <p className="sub-title">
         Upload your notes and see the other students notes
       </p>
-      <img src={require("../../assets/homepage.png")} alt="Home Page" />
+      <img
+        src={require("../../assets/homepage.png")}
+        alt="Home Page"
+        className="homepage-picture"
+      />
     </div>
   );
 };

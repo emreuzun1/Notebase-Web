@@ -5,15 +5,21 @@
 }
 
 .header {
-  font-size: 48px;
+  font-size: 3vw;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
+  text-align: center;
 }
 
 .sub-title {
   font-family: "Raleway", sans-serif;
-  font-size: 36px;
+  font-size: 2.5vw;
   font-weight: 500;
   max-width: 45vw;
   text-align: center;
+}
+
+.homepage-picture {
+  width: 50vw;
+  height: 50vw;
 }

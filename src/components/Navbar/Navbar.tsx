@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 
@@ -9,11 +9,14 @@ import { requestLogin } from "../../rxutils/actions";
 import "./Navbar.styles.css";
 
 export const Navbar = () => {
+  const [click, setClick] = useState<boolean>(false);
   const navigate = useNavigate();
   const { student } = useSelector((state: State) => state.auth);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
+
+  const handleClick = () => setClick(!click);
 
   const onLogin = async () => {
     dispatch(requestLogin({ username, password }, navigateMain));
@@ -25,59 +28,51 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="logo-container" onClick={() => navigate("/")}>
-        <div className="logo">
-          <img src={require("../../assets/logo.png")} alt="Notebase Logo" />
+      <Link to="/" className="navbar-logo">
+        <div className="logo-wrapper">
+          <img
+            src={require("../../assets/logo.png")}
+            alt="Notebase Logo"
+            className="logo"
+          />
         </div>
-        <p className="notebase-title">Notebase</p>
+        <p>Notebase</p>
+      </Link>
+      <div className="menu-icon" onClick={handleClick}>
+        <i className={click ? "fas fa-times" : "fas fa-bars"} />
       </div>
-      <div className="routes">
-        <p className="route">About us</p>
-        <p className="route" onClick={() => navigate("main")}>
-          Notes
-        </p>
-        {!student && (
-          <>
-            <input
-              type="text"
-              className="text-input"
-              placeholder="Kullanıcı adınız"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-            <input
-              type="password"
-              className="text-input"
-              placeholder="Şifreniz"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-            <div className="login-button" onClick={onLogin}>
-              <p className="login">Login</p>
+      <ul className={click ? "nav-menu active" : "nav-menu"}>
+        <li className="nav-item">
+          <Link to="/" className="nav-links">
+            About
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/" className="nav-links">
+            Notes
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/" className="nav-links">
+            Contact
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/" className="nav-links-mobile">
+            Sign Up
+          </Link>
+        </li>
+        <ul className="account-box">
+          <li className="nav-item">
+            <p className="nav-links">Login</p>
+          </li>
+          <li className="nav-item">
+            <div className="nav-links sign-up-wrapper">
+              <p>Sign Up</p>
             </div>
-          </>
-        )}
-        {student && (
-          <>
-            <div className="profile-container">
-              <BsFillPersonFill className="icon" />
-              <div className="profile-card">
-                <div className="card-top">
-                  <p>Hi, {student.user.first_name}</p>
-                  <div>
-                    <p>0</p>
-                    <VscDebugBreakpointLog size={24} />
-                  </div>
-                </div>
-                <div className="card-bottom">
-                  <a href="#">Settings</a>
-                  <a href="#">Exit</a>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
+          </li>
+        </ul>
+      </ul>
     </nav>
   );
 };

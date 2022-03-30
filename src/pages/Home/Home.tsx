@@ -8,7 +8,7 @@ export const Home = () => {
         backgroundImage: "linear-gradient(to bottom, #E69B69, #FFFFFF)",
       }}
     >
-      <p className="header">Free notes for every students</p>
+      <p className="title">Free notes for every students</p>
       <p className="sub-title">
         Upload your notes and see the other students notes
       </p>

@@ -1,12 +1,13 @@
 .navbar {
   padding-left: 5vw;
-  padding-right: 5vw;
+  padding-right: 2vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
-  z-index: 10;
+  font-family: "Raleway", sans-serif;
+  background-color: #e69b69;
 }
 
 .logo-container {
@@ -32,9 +33,9 @@
 
 .logo-container > p {
   color: black;
-  margin-left: 1rem;
-  font-size: 2vw;
-  font-family: "Raleway", sans-serif;
+  margin-left: 4px;
+  font-size: 28px;
+  font-weight: 500;
 }
 
 .routes {
@@ -43,11 +44,10 @@
 }
 
 .routes > p {
-  font-family: "Raleway", sans-serif;
-  font-size: 2vw;
+  font-size: calc(13px + 0.3vw);
   color: black;
   cursor: pointer;
-  margin-right: 18px;
+  margin-right: 2.5vw;
 }
 
 .login-button {
@@ -65,7 +65,6 @@
 .login-button > p {
   font-size: 1.75vw;
   color: white;
-  font-family: "Raleway", sans-serif;
 }
 
 .text-input {
@@ -77,5 +76,97 @@
   margin-right: 8px;
 }
 
+.profile-container {
+  position: relative;
+  display: inline-block;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.profile-card {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 256px;
+  border-radius: 4px;
+  right: 0;
+  z-index: 1;
+}
+
+.profile-container:hover .profile-card {
+  display: block;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  padding: 4px 8px;
+}
+
+.card-top > div {
+  display: flex;
+  align-items: center;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-bottom > a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  height: 48px;
+  align-items: center;
+  display: flex;
+  padding: 4px 8px;
+}
+
+.card-bottom > a:hover {
+  background-color: #e69b694d;
+}
+
+.point {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 @media only screen and (max-width: 768px) {
+  .logo {
+    width: 28px;
+    height: 28px;
+  }
+  .logo > img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .logo-container > p {
+    font-size: 14px;
+  }
+
+  .routes > p {
+    font-size: 12px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .profile-container > div {
+    display: none;
+  }
+
+  .profile-container > .icon {
+    display: hidden;
+  }
 }

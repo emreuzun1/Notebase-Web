@@ -25,7 +25,6 @@ function App() {
   return (
     <div
       style={{
-        backgroundImage: "linear-gradient(to bottom, #E69B69, #FFFFFF)",
       }}
     >
       <Navbar />

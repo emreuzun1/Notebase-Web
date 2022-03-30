@@ -2,7 +2,12 @@ import "./Home.styles.css";
 
 export const Home = () => {
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{
+        backgroundImage: "linear-gradient(to bottom, #E69B69, #FFFFFF)",
+      }}
+    >
       <p className="header">Free notes for every students</p>
       <p className="sub-title">
         Upload your notes and see the other students notes

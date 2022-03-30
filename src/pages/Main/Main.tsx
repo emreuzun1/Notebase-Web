@@ -1,3 +1,5 @@
+import "./Main.styles.css";
+
 export const Main = () => {
-  return <div></div>;
+  return <div className="container"></div>;
 };

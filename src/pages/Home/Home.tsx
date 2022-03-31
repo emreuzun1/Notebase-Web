@@ -1,3 +1,4 @@
+import { Login } from "../../components/ Login/Login";
 import "./Home.styles.css";
 
 export const Home = () => {
@@ -17,6 +18,9 @@ export const Home = () => {
         alt="Home Page"
         className="homepage-picture"
       />
+      <div className="modalView" id="modal">
+        <Login />
+      </div>
     </div>
   );
 };

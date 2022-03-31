@@ -5,26 +5,29 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 
 import { State } from "../../Interfaces/State";
-import { requestLogin } from "../../rxutils/actions";
 import "./Navbar.styles.css";
+import { persistor } from "../../rxutils";
 
 export const Navbar = () => {
   const [click, setClick] = useState<boolean>(false);
   const navigate = useNavigate();
   const { student } = useSelector((state: State) => state.auth);
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
 
   const handleClick = () => setClick(!click);
 
-  const onLogin = async () => {
-    dispatch(requestLogin({ username, password }, navigateMain));
-  };
-
   const navigateMain = useCallback(() => {
     navigate("/main");
   }, [navigate]);
+
+  const openModal = () => {
+    const modal = document.getElementById("modal");
+    modal?.classList.add("isOpen");
+  };
+
+  const exit = async () => {
+    await persistor.purge();
+  };
 
   return (
     <nav className="navbar">
@@ -57,21 +60,46 @@ export const Navbar = () => {
             Contact
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="/" className="nav-links-mobile">
-            Sign Up
-          </Link>
-        </li>
-        <ul className="account-box">
-          <li className="nav-item">
-            <p className="nav-links">Login</p>
-          </li>
-          <li className="nav-item">
-            <div className="nav-links sign-up-wrapper">
-              <p>Sign Up</p>
+        {student ? (
+          <>
+            <div className="profile-container">
+              <BsFillPersonFill className="icon" />
+              <div className="profile-card">
+                <div className="card-top">
+                  <p>Hi, {student.user.first_name}</p>
+                  <div>
+                    <p>0</p>
+                    <VscDebugBreakpointLog size={24} />
+                  </div>
+                </div>
+                <div className="card-bottom">
+                  <a href="#">Settings</a>
+                  <p
+                    onClick={() => {
+                      persistor.purge();
+                      navigateMain();
+                    }}
+                  >
+                    Exit
+                  </p>
+                </div>
+              </div>
             </div>
-          </li>
-        </ul>
+          </>
+        ) : (
+          <ul className="account-box">
+            <li className="nav-item">
+              <div className="nav-links" onClick={openModal}>
+                Login
+              </div>
+            </li>
+            <li className="nav-item">
+              <div className="nav-links sign-up-wrapper">
+                <p>Sign Up</p>
+              </div>
+            </li>
+          </ul>
+        )}
       </ul>
     </nav>
   );

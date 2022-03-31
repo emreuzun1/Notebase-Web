@@ -23,10 +23,7 @@ function PrivateRoute({ children, redirectPath = "/" }: PrivateRouteProps) {
 
 function App() {
   return (
-    <div
-      style={{
-      }}
-    >
+    <div style={{}}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

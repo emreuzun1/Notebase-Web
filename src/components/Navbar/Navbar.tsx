@@ -51,7 +51,7 @@ export const Navbar = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/" className="nav-links">
+          <Link to="/main" className="nav-links">
             Notes
           </Link>
         </li>
@@ -74,14 +74,14 @@ export const Navbar = () => {
                 </div>
                 <div className="card-bottom">
                   <a href="#">Settings</a>
-                  <p
+                  <a
+                    href="/"
                     onClick={() => {
                       persistor.purge();
-                      navigateMain();
                     }}
                   >
                     Exit
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>

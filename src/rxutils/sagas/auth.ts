@@ -16,7 +16,6 @@ function* userLogin(action: ActionInterface) {
       status,
     } = yield call(loginApi, { username, password });
     if (status === 200) {
-      console.log('HERE');
       yield put({ type: "LOGIN_SUCCESS", payload: { user, token } });
     }
   } catch (err) {

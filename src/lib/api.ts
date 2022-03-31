@@ -23,3 +23,13 @@ export const loginApi = (values: LoginInterface) => {
     },
   });
 };
+
+export const getAllDocumentsApi = (token: string) => {
+  return axios({
+    method: "GET",
+    url: "https://notebase-api.herokuapp.com/api/document/get/",
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+};

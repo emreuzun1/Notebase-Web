@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import "./App.css";
 import { Navbar } from "./components/Navbar/Navbar";
 import { State } from "./Interfaces/State";
 import { Home } from "./pages/Home/Home";
@@ -14,7 +13,6 @@ interface PrivateRouteProps {
 
 function PrivateRoute({ children, redirectPath = "/" }: PrivateRouteProps) {
   const { student } = useSelector((state: State) => state.auth);
-  console.log(student);
   if (!student) {
     return <Navigate to={redirectPath} replace />;
   }

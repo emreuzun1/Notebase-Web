@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Navbar } from "./components/Navbar/Navbar";
 import { State } from "./Interfaces/State";
+import { Documentation } from "./pages/Documentation/Documentation";
 import { Home } from "./pages/Home/Home";
 import { Main } from "./pages/Main/Main";
 
@@ -19,6 +20,8 @@ function PrivateRoute({ children, redirectPath = "/" }: PrivateRouteProps) {
   return children;
 }
 
+function MainRouter() {}
+
 function App() {
   return (
     <div style={{}}>
@@ -30,6 +33,14 @@ function App() {
           element={
             <PrivateRoute>
               <Main />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/main/:id"
+          element={
+            <PrivateRoute>
+              <Documentation />
             </PrivateRoute>
           }
         />

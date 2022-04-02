@@ -9,7 +9,7 @@ export interface Document {
   like_count?: number;
   dislike_count?: number;
   report_count?: number;
-  file?: string;
+  file?: any;
   date: string;
   user: string;
 }

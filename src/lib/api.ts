@@ -1,5 +1,8 @@
 import axios from "axios";
+import fs from "fs";
+
 import { LoginInterface, RegisterInterface } from "../Interfaces/Student";
+import { Document } from "../Interfaces/Document";
 
 export const registerApi = (values: RegisterInterface) => {
   return axios({
@@ -32,4 +35,21 @@ export const getAllDocumentsApi = (token: string) => {
       Authorization: `Token ${token}`,
     },
   });
+};
+
+export const createDocumentApi = async (document: Document, token: string) => {
+  const { user, title, description, university, course, file } = document;
+  const formdata = new FormData();
+  formdata.append("user", user);
+  formdata.append("title", title);
+  formdata.append("course", course);
+  formdata.append("description", description);
+  formdata.append("university", university);
+  await axios("https://notebase-api.herokuapp.com/api/document/create/", {
+    method: "POST",
+    data: { formdata },
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  }).then((res) => console.log(res));
 };

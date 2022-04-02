@@ -6,6 +6,8 @@ import { Document } from "../../Interfaces/Document";
 import { State } from "../../Interfaces/State";
 import { getAllDocumentsApi } from "../../lib/api";
 import styles from "./Main.module.css";
+import { Create } from "../../components/Create/Create";
+import { Link } from "react-router-dom";
 
 export const Main = () => {
   const { student } = useSelector((state: State) => state.auth);
@@ -17,6 +19,11 @@ export const Main = () => {
     });
   };
 
+  const createDocument = () => {
+    const element = document.getElementById("modal");
+    element?.classList.add("isOpen");
+  };
+
   useEffect(() => {
     getDocuments();
   }, []);
@@ -26,7 +33,9 @@ export const Main = () => {
       <div className={styles.body}>
         <div className={styles.sidebar}>
           <div className={styles.create_btn_wrapper} id="create-btn">
-            <button className={styles.create_btn}>Create Note</button>
+            <button className={styles.create_btn} onClick={createDocument}>
+              Create Note
+            </button>
           </div>
           <div className={styles.notes_folders}>
             <div className={styles.folder}>
@@ -46,36 +55,43 @@ export const Main = () => {
           <div className={styles.note_content}>
             <ul className={styles.list}>
               {documents.map((document: Document) => (
-                <li className={styles.listItem} key={document.id}>
-                  <img src={require("../../assets/logo.png")} alt="Logo" />
-                  <div className={styles.listItemDetail}>
-                    <div>
-                      <p>{document.title}</p>
-                      <div style={{ display: "flex" }}>
-                        <p>{document.department}</p>
-                        <p style={{ marginLeft: 8 }}>({document.university})</p>
+                <Link to={`${document.id}`} key={document.id}>
+                  <li className={styles.listItem}>
+                    <img src={require("../../assets/logo.png")} alt="Logo" />
+                    <div className={styles.listItemDetail}>
+                      <div>
+                        <p>{document.title}</p>
+                        <div style={{ display: "flex" }}>
+                          <p>{document.department}</p>
+                          <p style={{ marginLeft: 8 }}>
+                            ({document.university})
+                          </p>
+                        </div>
+                      </div>
+                      <div className={styles.listItemReviews}>
+                        <div className={styles.reviewContainer}>
+                          <AiFillLike size={24} color="black" />
+                          <p>{document.like_count}</p>
+                        </div>
+                        <div className={styles.reviewContainer}>
+                          <AiFillDislike size={24} color="black" />
+                          <p>{document.like_count}</p>
+                        </div>
+                        <div className={styles.reviewContainer}>
+                          <MdReportProblem size={24} color="black" />
+                          <p>{document.like_count}</p>
+                        </div>
                       </div>
                     </div>
-                    <div className={styles.listItemReviews}>
-                      <div className={styles.reviewContainer}>
-                        <AiFillLike size={24} color="black" />
-                        <p>{document.like_count}</p>
-                      </div>
-                      <div className={styles.reviewContainer}>
-                        <AiFillDislike size={24} color="black" />
-                        <p>{document.like_count}</p>
-                      </div>
-                      <div className={styles.reviewContainer}>
-                        <MdReportProblem size={24} color="black" />
-                        <p>{document.like_count}</p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                </Link>
               ))}
             </ul>
           </div>
         </div>
+      </div>
+      <div className="modalView" id="modal">
+        <Create />
       </div>
     </div>
   );

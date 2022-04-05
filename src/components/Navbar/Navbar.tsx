@@ -20,8 +20,13 @@ export const Navbar = () => {
     navigate("/main");
   }, [navigate]);
 
-  const openModal = () => {
-    const modal = document.getElementById("modal");
+  const openLogin = () => {
+    const modal = document.getElementById("login");
+    modal?.classList.add("isOpen");
+  };
+
+  const openSignup = () => {
+    const modal = document.getElementById("signup");
     modal?.classList.add("isOpen");
   };
 
@@ -89,12 +94,12 @@ export const Navbar = () => {
         ) : (
           <ul className="account-box">
             <li className="nav-item">
-              <div className="nav-links" onClick={openModal}>
+              <div className="nav-links" onClick={openLogin}>
                 Login
               </div>
             </li>
             <li className="nav-item">
-              <div className="nav-links sign-up-wrapper">
+              <div className="nav-links sign-up-wrapper" onClick={openSignup}>
                 <p>Sign Up</p>
               </div>
             </li>

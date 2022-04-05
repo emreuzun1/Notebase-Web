@@ -1,7 +1,13 @@
-export interface RegisterInterface {
-  username: string;
-  password: string;
+export interface RegisterValues {
+  first_name: string;
+  last_name: string;
   email: string;
+  password: string;
+  username: string;
+  confirmPassword: string;
+  department: string;
+  faculty: string;
+  university: string;
 }
 
 export interface LoginInterface {

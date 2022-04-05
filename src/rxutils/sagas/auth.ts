@@ -1,10 +1,10 @@
 import { put, call, takeLatest } from "redux-saga/effects";
-import { LoginInterface, RegisterInterface } from "../../Interfaces/Student";
+import { LoginInterface, RegisterValues } from "../../Interfaces/Student";
 import { loginApi } from "../../lib/api";
 
 interface ActionInterface {
   type: string;
-  payload: RegisterInterface | LoginInterface;
+  payload: RegisterValues | LoginInterface;
   navigate: () => void;
 }
 

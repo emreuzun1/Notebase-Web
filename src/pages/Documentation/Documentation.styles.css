@@ -1,0 +1,45 @@
+.doc-container {
+  flex: 1;
+  padding: 24px 12px 24px 12px;
+}
+
+.doc-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.doc-top-container {
+  width: 100vw;
+  display: flex;
+  gap: 48px;
+}
+
+.doc-detail-container {
+  display: flex;
+  margin-top: 24px;
+  align-items: center;
+  gap: 12px;
+}
+
+.doc-detail-text {
+  font-size: 20;
+}
+
+.doc-detail-text > span {
+  font-weight: 700;
+}
+
+.doc-description-container {
+  width: 100vw;
+  margin-top: 48px;
+}
+
+.doc-description-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.doc-description-text {
+  font: 18px;
+  margin-top: 8px;
+}

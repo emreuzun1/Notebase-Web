@@ -1,0 +1,40 @@
+export const Faculties = [
+  {label: 'Faculty of Dentistry', value: 'Faculty of Dentistry'},
+  {label: 'Faculty of Pharmacy', value: 'Faculty of Pharmacy'},
+  {label: 'Faculty of Literature', value: 'Faculty of Literature'},
+  {label: 'Faculty of Education', value: 'Faculty of Education'},
+  {label: 'Faculty of Science', value: 'Faculty of Science'},
+  {
+    label: 'Faculty of Science and Letters',
+    value: 'Faculty of Science and Letters',
+  },
+  {
+    label: 'Faculty of Economics and Administrative Sciences',
+    value: 'Faculty of Economics and Administrative Sciences',
+  },
+  {label: 'Faculty of Communication', value: 'Faculty of Communication'},
+  {label: 'Faculty of Law', value: 'Faculty of Law'},
+  {label: 'Faculty of Business', value: 'Faculty of Business'},
+  {
+    label: 'Faculty of Human and Social Sciences',
+    value: 'Faculty of Human and Social Sciences',
+  },
+  {label: 'Faculty of Art and Design', value: 'Faculty of Art and Design'},
+  {label: 'Faculty of Engineering', value: 'Faculty of Engineering'},
+  {label: 'Faculty of Architecture', value: 'Faculty of Architecture'},
+  {
+    label: 'Faculty of Agricultural Sciences and Technologies',
+    value: 'Faculty of Agricultural Sciences and Technologies',
+  },
+  {label: 'Faculty of Theology', value: 'Faculty of Theology'},
+  {label: 'Faculty of Tourism', value: 'Faculty of Tourism'},
+  {label: 'Faculty of Sports Sciences', value: 'Faculty of Sports Sciences'},
+  {
+    label: 'Faculty of Physical Therapy and Rehabilitation',
+    value: 'Faculty of Physical Therapy and Rehabilitation',
+  },
+  {label: 'Faculty of Nursing', value: 'Faculty of Nursing'},
+  {label: 'Faculty of Maritime', value: 'Faculty of Maritime'},
+  {label: 'Faculty of Medicine', value: 'Faculty of Medicine'},
+  {label: 'Faculty of Veterinary', value: 'Faculty of Veterinary'},
+];

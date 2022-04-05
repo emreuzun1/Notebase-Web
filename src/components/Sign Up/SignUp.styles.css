@@ -1,10 +1,10 @@
-.login-card {
+.signup-card {
   position: fixed;
   width: 100%;
   box-sizing: border-box;
-  transform: translate(-50%, -50%);
   text-align: center;
   padding: 12px;
+  padding-bottom: 36px;
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 10;
@@ -35,18 +35,18 @@
   background-color: rgba(128, 128, 128, 0.404);
 }
 
-.login-welcomeText {
+.signup-welcomeText {
   margin-top: 48px;
   font-size: 2.5rem;
   font-weight: 700;
 }
 
-.login-credentialsText {
+.signup-credentialsText {
   margin-top: 12px;
   font-size: 18px;
 }
 
-.login-inputsWrapper {
+.signup-inputsWrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -55,7 +55,14 @@
   gap: 12px;
 }
 
-.login-input {
+.signup-fullnameWrapper {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.signup-input {
   width: 50%;
   height: 50px;
   border: 1px lightgrey solid;
@@ -63,7 +70,11 @@
   padding: 0 8px;
 }
 
-.login-btn {
+.signup-dropdown {
+  width: 50%;
+}
+
+.signup-btn {
   width: 25%;
   height: 40px;
   background-color: var(--blue);
@@ -75,26 +86,18 @@
   cursor: pointer;
 }
 
-.forgot-text {
-  margin-top: 48px;
-  font-size: large;
-}
-
-.signup-text {
-  color: var(--purple);
-  font-weight: 700;
-  cursor: pointer;
-}
-
 @media screen and (max-width: 960px) {
-  .login-card {
+  .signup-card {
     max-width: 90vw;
   }
-  .login-inputswrapper,
-  .login-input {
+
+  .signup-inputsWrapper,
+  .signup-input,
+  .signup-dropdown,
+  .signup-fullnameWrapper {
     width: 100%;
   }
-  .login-btn {
+  .signup-btn {
     width: 50%;
   }
 }

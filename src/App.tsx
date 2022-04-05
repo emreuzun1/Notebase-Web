@@ -1,5 +1,8 @@
 import { useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { Worker } from "@react-pdf-viewer/core";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Navbar } from "./components/Navbar/Navbar";
 import { State } from "./Interfaces/State";
@@ -25,26 +28,29 @@ function MainRouter() {}
 function App() {
   return (
     <div style={{}}>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/main"
-          element={
-            <PrivateRoute>
-              <Main />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/main/:id"
-          element={
-            <PrivateRoute>
-              <Documentation />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+      <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.13.216/build/pdf.worker.min.js">
+        <Navbar />
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/main"
+            element={
+              <PrivateRoute>
+                <Main />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/main/:id"
+            element={
+              <PrivateRoute>
+                <Documentation />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </Worker>
     </div>
   );
 }

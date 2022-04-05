@@ -11,8 +11,14 @@ export const Login = () => {
   const dispatch = useDispatch();
 
   const modalClose = () => {
-    const modal = document.getElementById("modal");
+    const modal = document.getElementById("login");
     modal?.classList.remove("isOpen");
+  };
+
+  const signUpModal = () => {
+    modalClose();
+    const modal = document.getElementById("signup");
+    modal?.classList.add("isOpen");
   };
 
   const navigate = () => {};
@@ -51,7 +57,10 @@ export const Login = () => {
         Login
       </button>
       <p className="forgot-text">
-        You do not have an account? <span className="signup-text">Sign up</span>
+        You do not have an account?{" "}
+        <span className="signup-text" onClick={signUpModal}>
+          Sign up
+        </span>
       </p>
     </div>
   );

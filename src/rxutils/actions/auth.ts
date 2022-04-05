@@ -1,4 +1,4 @@
-import { LoginInterface, RegisterInterface } from "../../Interfaces/Student";
+import { LoginInterface, RegisterValues } from "../../Interfaces/Student";
 
 export function requestLogin(inputs: LoginInterface, navigate: () => void) {
   return {
@@ -11,7 +11,7 @@ export function requestLogin(inputs: LoginInterface, navigate: () => void) {
   };
 }
 
-export function requestRegister(inputs: RegisterInterface) {
+export function requestRegister(inputs: RegisterValues) {
   return {
     type: "REGISTER_REQUEST",
     payload: {

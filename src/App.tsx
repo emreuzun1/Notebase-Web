@@ -25,7 +25,7 @@ function PrivateRoute({ children, redirectPath = "/" }: PrivateRouteProps) {
 
 function MainRouter() {}
 
-function App() {
+export const App = () => {
   return (
     <div style={{}}>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.13.216/build/pdf.worker.min.js">
@@ -53,6 +53,6 @@ function App() {
       </Worker>
     </div>
   );
-}
+};
 
 export default App;

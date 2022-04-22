@@ -28,7 +28,6 @@ export const Create = () => {
   };
 
   const createDocument = async () => {
-    setDocumentation({ ...documentation, file: file.current?.files![0] });
     createDocumentApi(documentation, student?.token!);
   };
 
@@ -37,11 +36,16 @@ export const Create = () => {
       <div className="create-close-btn" onClick={closeModal}>
         <GrClose color="black" />
       </div>
-      <form className="create-form">
+      <form
+        className="create-form"
+        onSubmit={createDocument}
+        encType="multipart/form-data"
+      >
         <input
           type="text"
           className="title-input"
           value={documentation?.title}
+          name="title"
           onChange={(e) =>
             setDocumentation({ ...documentation, title: e.target.value })
           }
@@ -50,6 +54,7 @@ export const Create = () => {
           <p className="create-input-title">University : </p>
           <input
             type="text"
+            name="university"
             className="create-input"
             value={documentation.university}
             onChange={(e) =>
@@ -62,6 +67,7 @@ export const Create = () => {
           <input
             type="text"
             className="create-input"
+            name="faculty"
             value={documentation.faculty}
             onChange={(e) =>
               setDocumentation({ ...documentation, faculty: e.target.value })
@@ -72,6 +78,7 @@ export const Create = () => {
           <p className="create-input-title">Course ID : </p>
           <input
             type="text"
+            name="course"
             className="create-input"
             value={documentation.course}
             onChange={(e) =>
@@ -83,6 +90,7 @@ export const Create = () => {
           <p className="create-input-title ">Description : </p>
           <textarea
             className="create-input description"
+            name="description"
             value={documentation.description}
             onChange={(e) =>
               setDocumentation({
@@ -95,13 +103,20 @@ export const Create = () => {
         <div className="create-input-wrapper">
           <p className="create-input-title">PDF :</p>
           <div className="pdf-container">
-            <input type="file" ref={file} />
+            <input
+              type="file"
+              ref={file}
+              name="file"
+              onChange={(e) =>
+                setDocumentation({ ...documentation, file: e.target.files![0] })
+              }
+            />
           </div>
         </div>
+        <button type="submit" className="create-send-btn">
+          Post
+        </button>
       </form>
-      <button className="create-send-btn" onClick={createDocument}>
-        Post
-      </button>
     </div>
   );
 };

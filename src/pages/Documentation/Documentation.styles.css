@@ -1,6 +1,6 @@
 .doc-container {
   flex: 1;
-  padding: 24px 12px 24px 12px;
+  padding: 24px;
 }
 
 .doc-title {
@@ -9,7 +9,7 @@
 }
 
 .doc-top-container {
-  width: 100vw;
+  width: 100%;
   display: flex;
   gap: 48px;
 }
@@ -29,9 +29,22 @@
   font-weight: 700;
 }
 
+.doc-btn-container {
+  display: flex;
+  padding: 8px 12px;
+  background-color: var(--purple);
+  border-radius: 4px;
+  color: white;
+  margin-top: 24px;
+}
+
+.doc-btn-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .doc-description-container {
-  width: 100vw;
-  margin-top: 48px;
+  margin-top: 36px;
 }
 
 .doc-description-title {

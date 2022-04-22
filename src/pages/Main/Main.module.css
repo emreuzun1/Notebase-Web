@@ -43,6 +43,7 @@
   background-color: var(--purple);
   color: white;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .notes_folders {
@@ -79,6 +80,23 @@
   border-bottom: 1px solid var(--gray);
   display: flex;
   padding: 5px 12px;
+}
+
+.searchBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  margin-left: 12px;
+  background-color: var(--orange);
+  border: 0;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.searchBtn:hover {
+  background-color: var(--darkOrange);
 }
 
 .input {

@@ -41,14 +41,14 @@ export const Login = () => {
         <input
           type="text"
           className="login-input"
-          placeholder="Kullanıcı adınız"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
           className="login-input"
-          placeholder="Şifreniz"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

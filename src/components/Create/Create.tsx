@@ -6,13 +6,14 @@ import { Document } from "../../Interfaces/Document";
 import { useSelector } from "react-redux";
 import { State } from "../../Interfaces/State";
 import { createDocumentApi } from "../../lib/api";
+import axios from "axios";
 
 export const Create = () => {
   const { student } = useSelector((state: State) => state.auth);
   const file = React.createRef<HTMLInputElement>();
   const [documentation, setDocumentation] = useState<Document>({
     title: "Change Title",
-    university: student!.user.username,
+    university: "",
     department: "",
     course: "11",
     file: "",
@@ -28,7 +29,22 @@ export const Create = () => {
   };
 
   const createDocument = async () => {
-    createDocumentApi(documentation, student?.token!);
+    const formData = new FormData();
+    formData.append("file", documentation.file);
+    await axios({ url: "http://127.0.0.1:5000/", data: formData }).then(
+      async (res) => {
+        console.log(res);
+        if (res) {
+          await createDocumentApi(documentation, student?.token!).then(
+            (res) => {
+              if (res.status === 201) {
+                window.location.reload();
+              }
+            }
+          );
+        }
+      }
+    );
   };
 
   return (
@@ -38,7 +54,10 @@ export const Create = () => {
       </div>
       <form
         className="create-form"
-        onSubmit={createDocument}
+        onSubmit={(e) => {
+          e.preventDefault();
+          createDocument();
+        }}
         encType="multipart/form-data"
       >
         <input

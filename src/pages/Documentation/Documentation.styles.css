@@ -43,6 +43,12 @@
   font-weight: 600;
 }
 
+.doc-pdf-container {
+  filter: blur(8px);
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .doc-description-container {
   margin-top: 36px;
 }

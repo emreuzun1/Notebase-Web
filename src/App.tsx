@@ -23,8 +23,6 @@ function PrivateRoute({ children, redirectPath = "/" }: PrivateRouteProps) {
   return children;
 }
 
-function MainRouter() {}
-
 export const App = () => {
   return (
     <div style={{}}>

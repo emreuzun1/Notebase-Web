@@ -13,7 +13,9 @@ import {
   createDownloadApi,
   getDocumentApi,
   getDownloadsApi,
+  getStudentApi,
 } from "../../lib/api";
+import { Student } from "../../Interfaces/Student";
 
 interface Download {
   id: string;
@@ -33,6 +35,7 @@ export const Documentation = () => {
   const [documentation, setDocumentation] = useState<DocumentInterface>();
   const [isTaken, setIsTaken] = useState<boolean>(false);
   const [downloaded, setDownloaded] = useState<Download>();
+  const [author, setAuthor] = useState<Student>();
   const { id } = useParams();
 
   function onDocumentLoadSuccess({ numPages }: any) {
@@ -45,9 +48,7 @@ export const Documentation = () => {
       student!.user.id,
       student?.token!,
       documentation!.id!
-    ).then((res) => {
-      console.log(res);
-    });
+    ).then((res) => {});
   };
 
   const checkIsTaken = async () => {
@@ -61,6 +62,13 @@ export const Documentation = () => {
     });
   };
 
+  // Gets the author of the document.
+  const getAuthor = async () => {
+    await getStudentApi(documentation!.user.toString()).then((res) => {
+      setAuthor({ user: res.data, token: "" });
+    });
+  };
+
   const getDocument = async () => {
     await getDocumentApi(id!, student?.token!).then((res) => {
       setDocumentation(res.data);
@@ -71,6 +79,12 @@ export const Documentation = () => {
     getDocument();
     checkIsTaken();
   }, []);
+
+  React.useEffect(() => {
+    if (documentation) {
+      getAuthor();
+    }
+  }, [documentation]);
 
   return (
     <div className="doc-container">
@@ -86,6 +100,7 @@ export const Documentation = () => {
           </div>
           <div className="doc-detail-container">
             <IoPencil size={36} />
+            <p className="doc-detail-text">{author?.user.first_name}</p>
           </div>
           <div className="doc-detail-container">
             <BsFillCalendarDateFill size={36} />

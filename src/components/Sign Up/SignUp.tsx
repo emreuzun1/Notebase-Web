@@ -36,7 +36,7 @@ export const SignUp = () => {
           closeOnClick: true,
           draggable: true,
           progress: undefined,
-        });
+        }); 
         modalClose();
       }
     });
@@ -78,6 +78,15 @@ export const SignUp = () => {
             }
           />
         </div>
+        <input
+          type="email"
+          className="signup-input"
+          placeholder="Mail"
+          value={registerValues.email}
+          onChange={(e) =>
+            setRegisterValues({ ...registerValues, email: e.target.value })
+          }
+        />
         <input
           type="text"
           className="signup-input"

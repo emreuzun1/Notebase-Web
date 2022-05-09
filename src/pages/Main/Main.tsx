@@ -57,16 +57,6 @@ export const Main = () => {
               Create Note
             </button>
           </div>
-          <div className={styles.notes_folders}>
-            <div className={styles.folder}>
-              <AiFillFolder size={36} color="black" />
-              <p>All Notes</p>
-            </div>
-            <div className={styles.folder}>
-              <AiFillFolder size={36} color="black" />
-              <p>My Notes</p>
-            </div>
-          </div>
         </div>
         <div className={styles.content}>
           <div className={styles.toolbar}>

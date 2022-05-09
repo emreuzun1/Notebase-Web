@@ -85,4 +85,11 @@
   color: white;
   font-size: 20px;
   border-radius: 4px;
+  align-self: center;
+  cursor: pointer;
+  transition: background-color ease 300ms;
+}
+
+.create-send-btn:hover {
+  background-color: var(--darkOrange);
 }

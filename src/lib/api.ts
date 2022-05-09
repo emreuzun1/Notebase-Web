@@ -52,22 +52,24 @@ export const getAllDocumentsApi = (token: string) => {
 };
 
 export const createDocumentApi = async (document: Document, token: string) => {
-  const { user, title, description, university, course, file } = document;
+  const { user, title, description, faculty, university, course, file } =
+    document;
   const formdata = new FormData();
   formdata.append("user", user);
   formdata.append("title", title);
   formdata.append("course", course);
   formdata.append("description", description);
   formdata.append("university", university);
+  formdata.append("faculty", faculty);
   formdata.append("file", file);
-  await axios("https://notebase-api.herokuapp.com/api/document/create/", {
+  return axios("https://notebase-api.herokuapp.com/api/document/create/", {
     method: "POST",
     data: formdata,
     headers: {
       Authorization: `Token ${token}`,
       "Content-Type": "multipart/form-data",
     },
-  }).then((res) => console.log(res));
+  });
 };
 
 export const createDownloadApi = (
@@ -105,4 +107,8 @@ export const getDocumentApi = (id: string, token: string) => {
       },
     }
   );
+};
+
+export const getStudentApi = (id: string) => {
+  return axios.get(`https://notebase-api.herokuapp.com/api/student/get/${id}`);
 };

@@ -46,11 +46,6 @@
   border-radius: 4px;
 }
 
-.notes_folders {
-  width: 100%;
-  padding: 12px;
-}
-
 .folder {
   display: flex;
   width: 100%;
@@ -173,8 +168,5 @@
   .body {
     flex-direction: column;
     height: 62px;
-  }
-  .notes_folders {
-    display: none;
   }
 }

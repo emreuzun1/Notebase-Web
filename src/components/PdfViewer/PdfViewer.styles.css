@@ -1,0 +1,30 @@
+.pdf-container {
+  background-color: black;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.caret-btn {
+  display: block;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.caret-btn:hover {
+  background-color: rgba(188, 188, 188, 0.503);
+}
+
+.caret-btn.disabled {
+  pointer-events: none;
+}
+
+.pdf-page {
+  max-width: calc(100% - 2em);
+}
+
+.pdf-page canvas {
+  max-width: 100%;
+  height: auto !important;
+}

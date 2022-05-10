@@ -21,20 +21,6 @@
   align-items: center;
 }
 
-.close-btn {
-  align-self: flex-end;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  padding: 4px;
-}
-
-.close-btn:hover {
-  background-color: rgba(128, 128, 128, 0.404);
-}
-
 .signup-welcomeText {
   margin-top: 48px;
   font-size: 2.5rem;

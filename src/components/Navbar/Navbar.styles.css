@@ -141,7 +141,9 @@
   flex-direction: column;
 }
 
-.card-bottom > a {
+.card-bottom > a,
+.card-bottom > div {
+  cursor: pointer;
   text-decoration: none;
   color: black;
   font-weight: 500;
@@ -151,7 +153,8 @@
   padding: 4px 8px;
 }
 
-.card-bottom > a:hover {
+.card-bottom > a:hover,
+.card-bottom > div:hover {
   background-color: #e69b694d;
 }
 

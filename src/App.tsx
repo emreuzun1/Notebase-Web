@@ -3,12 +3,14 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Worker } from "@react-pdf-viewer/core";
 import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 import { Navbar } from "./components/Navbar/Navbar";
 import { State } from "./Interfaces/State";
 import { Documentation } from "./pages/Documentation/Documentation";
 import { Home } from "./pages/Home/Home";
 import { Main } from "./pages/Main/Main";
+import Settings from "./components/Settings/Settings";
 
 interface PrivateRouteProps {
   children: any;
@@ -49,6 +51,9 @@ export const App = () => {
           />
         </Routes>
       </Worker>
+      <div className="modalView" id="settings-modal">
+        <Settings />
+      </div>
     </div>
   );
 };

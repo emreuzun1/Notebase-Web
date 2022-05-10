@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { GrClose } from "react-icons/gr";
-import { RegisterValues } from "../../Interfaces/Student";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import { toast } from "react-toastify";
+
 import "./SignUp.styles.css";
+import { RegisterValues } from "../../Interfaces/Student";
 import { Faculties } from "../../constants/Faculty";
 import { register } from "../../lib/api";
-import { toast } from "react-toastify";
 
 export const SignUp = () => {
   const [registerValues, setRegisterValues] = useState<RegisterValues>({
@@ -36,7 +37,7 @@ export const SignUp = () => {
           closeOnClick: true,
           draggable: true,
           progress: undefined,
-        }); 
+        });
         modalClose();
       }
     });
@@ -51,7 +52,7 @@ export const SignUp = () => {
       <p className="signup-credentialsText">
         Please fill the credentials to sign up
       </p>
-      <form className="signup-inputsWrapper">
+      <form className="card-form">
         <div className="signup-fullnameWrapper">
           <input
             type="text"

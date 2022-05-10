@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AiFillLike, AiFillDislike, AiFillFolder } from "react-icons/ai";
+import { AiFillLike, AiFillDislike } from "react-icons/ai";
 import { MdReportProblem } from "react-icons/md";
 import { GrRefresh } from "react-icons/gr";
 import { Link } from "react-router-dom";
@@ -10,6 +10,7 @@ import { State } from "../../Interfaces/State";
 import { getAllDocumentsApi } from "../../lib/api";
 import styles from "./Main.module.css";
 import { Create } from "../../components/Create/Create";
+import Settings from "../../components/Settings/Settings";
 
 export const Main = () => {
   const { student } = useSelector((state: State) => state.auth);
@@ -120,6 +121,7 @@ export const Main = () => {
       <div className="modalView" id="modal">
         <Create />
       </div>
+      
     </div>
   );
 };

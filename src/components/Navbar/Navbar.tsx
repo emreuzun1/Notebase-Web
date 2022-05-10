@@ -78,7 +78,15 @@ export const Navbar = () => {
                   </div>
                 </div>
                 <div className="card-bottom">
-                  <a href="#">Settings</a>
+                  <div
+                    onClick={() =>
+                      document
+                        .getElementById("settings-modal")
+                        ?.classList.add("isOpen")
+                    }
+                  >
+                    Settings
+                  </div>
                   <a
                     href="/"
                     onClick={() => {

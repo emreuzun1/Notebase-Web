@@ -13,13 +13,13 @@ export const Create = () => {
   const file = React.createRef<HTMLInputElement>();
   const [documentation, setDocumentation] = useState<Document>({
     title: "Change Title",
-    university: "",
+    university: student!.user.university,
     department: "",
-    course: "11",
+    course: "",
     file: "",
     description: "",
     date: "",
-    faculty: "",
+    faculty: student!.user.faculty,
     user: student!.user.id,
   });
 
@@ -31,24 +31,24 @@ export const Create = () => {
   const createDocument = async () => {
     const formData = new FormData();
     formData.append("file", documentation.file);
-    await axios({ url: "http://127.0.0.1:5000/", data: formData }).then(
-      async (res) => {
-        console.log(res);
-        if (res) {
-          await createDocumentApi(documentation, student?.token!).then(
-            (res) => {
-              if (res.status === 201) {
-                window.location.reload();
-              }
-            }
-          );
-        }
+    await axios({
+      url: "http://127.0.0.1:5000/",
+      method: "POST",
+      data: formData,
+    }).then(async (res) => {
+      console.log(res);
+      if (res.data) {
+        await createDocumentApi(documentation, student?.token!).then((res) => {
+          if (res.status === 201) {
+            window.location.reload();
+          }
+        });
       }
-    );
+    });
   };
 
   return (
-    <div className="create-card">
+    <div className="card">
       <div className="create-close-btn" onClick={closeModal}>
         <GrClose color="black" />
       </div>
@@ -69,23 +69,23 @@ export const Create = () => {
             setDocumentation({ ...documentation, title: e.target.value })
           }
         />
-        <div className="create-input-wrapper">
-          <p className="create-input-title">University : </p>
+        <div className="card-input-wrapper">
+          <p className="card-input-title">University : </p>
           <input
             type="text"
             name="university"
-            className="create-input"
+            className="card-input"
             value={documentation.university}
             onChange={(e) =>
               setDocumentation({ ...documentation, university: e.target.value })
             }
           />
         </div>
-        <div className="create-input-wrapper">
-          <p className="create-input-title">Faculty : </p>
+        <div className="card-input-wrapper">
+          <p className="card-input-title">Faculty : </p>
           <input
             type="text"
-            className="create-input"
+            className="card-input"
             name="faculty"
             value={documentation.faculty}
             onChange={(e) =>
@@ -93,22 +93,22 @@ export const Create = () => {
             }
           />
         </div>
-        <div className="create-input-wrapper">
-          <p className="create-input-title">Course ID : </p>
+        <div className="card-input-wrapper">
+          <p className="card-input-title">Course ID : </p>
           <input
             type="text"
             name="course"
-            className="create-input"
+            className="card-input"
             value={documentation.course}
             onChange={(e) =>
               setDocumentation({ ...documentation, course: e.target.value })
             }
           />
         </div>
-        <div className="create-input-wrapper">
-          <p className="create-input-title ">Description : </p>
+        <div className="card-input-wrapper">
+          <p className="card-input-title ">Description : </p>
           <textarea
-            className="create-input description"
+            className="card-input description"
             name="description"
             value={documentation.description}
             onChange={(e) =>
@@ -119,8 +119,8 @@ export const Create = () => {
             }
           />
         </div>
-        <div className="create-input-wrapper">
-          <p className="create-input-title">PDF :</p>
+        <div className="card-input-wrapper">
+          <p className="card-input-title">PDF :</p>
           <div className="pdf-container">
             <input
               type="file"
@@ -132,7 +132,7 @@ export const Create = () => {
             />
           </div>
         </div>
-        <button type="submit" className="create-send-btn">
+        <button type="submit" className="card-btn">
           Post
         </button>
       </form>

@@ -1,6 +1,7 @@
 .doc-container {
   flex: 1;
   padding: 24px;
+  overflow: hidden;
 }
 
 .doc-title {
@@ -44,9 +45,13 @@
 }
 
 .doc-pdf-container {
-  filter: blur(8px);
   pointer-events: none;
   cursor: not-allowed;
+}
+
+.doc-pdf-wrapper {
+  display: flex;
+  position: relative;
 }
 
 .doc-description-container {
@@ -61,4 +66,24 @@
 .doc-description-text {
   font: 18px;
   margin-top: 8px;
+}
+
+.doc-blur {
+  filter: blur(8px);
+}
+
+.doc-locked-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+}
+
+@media screen and (max-width: 960px) {
+  .doc-top-container {
+    flex-direction: column;
+  }
 }

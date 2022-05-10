@@ -37,7 +37,7 @@ export const Login = () => {
       <p className="login-credentialsText">
         Please fill the credentials correctly to login
       </p>
-      <form className="login-inputsWrapper">
+      <form className="card-form">
         <input
           type="text"
           className="login-input"

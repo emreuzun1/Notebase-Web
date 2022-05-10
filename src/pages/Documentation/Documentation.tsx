@@ -5,6 +5,7 @@ import { IoMdSchool } from "react-icons/io";
 import { IoPencil } from "react-icons/io5";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import { BiLock } from "react-icons/bi";
 
 import "./Documentation.styles.css";
 import { State } from "../../Interfaces/State";
@@ -16,6 +17,8 @@ import {
   getStudentApi,
 } from "../../lib/api";
 import { Student } from "../../Interfaces/Student";
+import Edit from "../../components/Edit/Edit";
+import PdfViewer from "../../components/PdfViewer/PdfViewer";
 
 interface Download {
   id: string;
@@ -28,9 +31,9 @@ interface Download {
 }
 
 export const Documentation = () => {
+  const [editMode, setEditMode] = useState<boolean>(false);
   const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [pages, setPages] = useState<any>([]);
+  const [pages, setPages] = useState<any[]>([]);
   const { student } = useSelector((state: State) => state.auth);
   const [documentation, setDocumentation] = useState<DocumentInterface>();
   const [isTaken, setIsTaken] = useState<boolean>(false);
@@ -51,6 +54,10 @@ export const Documentation = () => {
     ).then((res) => {});
   };
 
+  const showPdf = () => {
+    document.getElementById("pdf-modal")?.classList.add("isOpen");
+  };
+
   const checkIsTaken = async () => {
     await getDownloadsApi(student!.token).then((res) => {
       res.data.map((download: Download) => {
@@ -66,6 +73,10 @@ export const Documentation = () => {
   const getAuthor = async () => {
     await getStudentApi(documentation!.user.toString()).then((res) => {
       setAuthor({ user: res.data, token: "" });
+      if (res.data.id === student?.user.id) {
+        setEditMode(true);
+        setIsTaken(true);
+      }
     });
   };
 
@@ -89,12 +100,12 @@ export const Documentation = () => {
   return (
     <div className="doc-container">
       <div className="doc-top-container">
-        <div>
+        <div style={{ minWidth: "20%" }}>
           <p className="doc-title">{documentation?.title}</p>
           <div className="doc-detail-container">
             <IoMdSchool size={36} />
             <p className="doc-detail-text">
-              {documentation?.department}{" "}
+              {documentation?.faculty}{" "}
               <span>({documentation?.university})</span>
             </p>
           </div>
@@ -106,26 +117,64 @@ export const Documentation = () => {
             <BsFillCalendarDateFill size={36} />
             <p className="doc-detail-text">{documentation?.date}</p>
           </div>
-          <button className="doc-btn-container" onClick={takeCourse}>
+          <div style={{ display: "flex", gap: 8 }}>
             {!isTaken ? (
-              <p className="doc-btn-text">Take course</p>
+              <button className="doc-btn-container" onClick={takeCourse}>
+                <p className="doc-btn-text">Take document</p>
+              </button>
             ) : (
-              <p className="doc-btn-text">Show PDF</p>
+              <button className="doc-btn-container" onClick={showPdf}>
+                <p className="doc-btn-text">Show PDF</p>
+              </button>
             )}
-          </button>
+            {editMode && (
+              <button
+                className="doc-btn-container"
+                onClick={() =>
+                  document.getElementById("edit-modal")?.classList.add("isOpen")
+                }
+              >
+                <p className="doc-btn-text">Edit PDF</p>
+              </button>
+            )}
+          </div>
         </div>
         <div className="doc-pdf-container">
           <Document
             file={documentation?.file}
             onLoadSuccess={onDocumentLoadSuccess}
+            className="doc-pdf-wrapper"
           >
-            <Page pageNumber={1} height={250} />
+            {Array.from(new Array(numPages), (el, index) => {
+              return (
+                <Page
+                  key={`${index}`}
+                  pageNumber={index + 1}
+                  height={250}
+                  className={!isTaken ? "doc-blur" : ""}
+                />
+              );
+            })}
+            {!isTaken && (
+              <div className="doc-locked-container">
+                <BiLock size={36} color="black" />
+                <p style={{ fontSize: 24 }}>Locked</p>
+              </div>
+            )}
           </Document>
         </div>
       </div>
       <div className="doc-description-container">
         <p className="doc-description-title">Description</p>
         <p className="doc-description-text">{documentation?.description}</p>
+      </div>
+      {documentation && (
+        <div className="modalView" id="edit-modal">
+          <Edit documentation={documentation!} />
+        </div>
+      )}
+      <div className="modalView" id="pdf-modal">
+        <PdfViewer file={documentation?.file} />
       </div>
     </div>
   );

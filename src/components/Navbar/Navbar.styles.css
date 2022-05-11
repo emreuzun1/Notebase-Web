@@ -28,7 +28,7 @@
 
 .navbar-logo > p {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: black;
 }
 
@@ -110,17 +110,18 @@
 }
 
 .profile-card {
-  display: none;
+  opacity: 0;
   position: absolute;
   background-color: white;
   width: 256px;
   border-radius: 4px;
   right: 0;
   z-index: 1;
+  transition: all ease 300ms;
 }
 
 .profile-container:hover .profile-card {
-  display: block;
+  opacity: 1;
 }
 
 .card-top {
@@ -156,6 +157,10 @@
 .card-bottom > a:hover,
 .card-bottom > div:hover {
   background-color: #e69b694d;
+}
+
+.card-button {
+  gap: 12px;
 }
 
 .point {

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
+import { AiFillEdit } from "react-icons/ai";
+import { ImExit } from "react-icons/im";
 
 import { State } from "../../Interfaces/State";
 import "./Navbar.styles.css";
@@ -61,39 +63,45 @@ export const Navbar = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/" className="nav-links">
+          <Link to="/contact" className="nav-links">
             Contact
           </Link>
         </li>
         {student ? (
           <>
             <div className="profile-container">
-              <BsFillPersonFill className="icon" />
+              <div className="icon-container">
+                <BsFillPersonFill className="icon" />
+              </div>
               <div className="profile-card">
                 <div className="card-top">
                   <p>Hi, {student.user.first_name}</p>
                   <div>
-                    <p>0</p>
+                    <p>{student.user.point}</p>
                     <VscDebugBreakpointLog size={24} />
                   </div>
                 </div>
                 <div className="card-bottom">
                   <div
+                    className="card-button"
                     onClick={() =>
                       document
                         .getElementById("settings-modal")
                         ?.classList.add("isOpen")
                     }
                   >
-                    Settings
+                    <AiFillEdit size={24} color="black" />
+                    <p>Edit Profile</p>
                   </div>
                   <a
+                    className="card-button"
                     href="/"
                     onClick={() => {
                       persistor.purge();
                     }}
                   >
-                    Exit
+                    <ImExit size={24} color="black" />
+                    <p>Exit</p>
                   </a>
                 </div>
               </div>

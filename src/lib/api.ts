@@ -1,7 +1,7 @@
 import axios from "axios";
 import fs from "fs";
 
-import { LoginInterface, RegisterValues } from "../Interfaces/Student";
+import { LoginInterface, RegisterValues, Student } from "../Interfaces/Student";
 import { Document } from "../Interfaces/Document";
 
 export const register = (values: RegisterValues) => {
@@ -111,4 +111,29 @@ export const getDocumentApi = (id: string, token: string) => {
 
 export const getStudentApi = (id: string) => {
   return axios.get(`https://notebase-api.herokuapp.com/api/student/get/${id}`);
+};
+
+export const editDocumentApi = (document: Document, student: Student) => {
+  const formData = new FormData();
+  formData.append("course", document.course);
+  formData.append("user", student.user.id);
+  formData.append("title", document.title);
+  return axios({
+    method: "PUT",
+    url: `https://notebase-api.herokuapp.com/api/document/edit/${document.id}`,
+    headers: {
+      Authorization: `Token ${student.token}`,
+    },
+    data: formData,
+  });
+};
+
+export const deleteDocumentApi = (document: Document, student: Student) => {
+  return axios({
+    method: "DELETE",
+    url: `https://notebase-api.herokuapp.com/api/document/delete/${document.id}`,
+    headers: {
+      Authorization: `Token ${student.token}`,
+    },
+  });
 };

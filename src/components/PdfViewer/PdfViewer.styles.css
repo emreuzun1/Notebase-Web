@@ -1,11 +1,3 @@
-.pdf-container {
-  background-color: black;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .caret-btn {
   display: block;
   cursor: pointer;

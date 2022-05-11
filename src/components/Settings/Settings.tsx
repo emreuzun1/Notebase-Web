@@ -9,9 +9,7 @@ const Settings = () => {
     useSelector((state: State) => state.auth.student?.user!)
   );
 
-  const updateStudent = () => {
-      
-  }
+  const updateStudent = () => {};
 
   return (
     <div className="card">
@@ -23,6 +21,9 @@ const Settings = () => {
       >
         <GrClose color="black" />
       </div>
+      <p style={{ fontSize: 24 }}>
+        <strong>Settings</strong>
+      </p>
       <form
         className="card-form"
         encType="multipart/form-data"

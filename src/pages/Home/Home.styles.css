@@ -5,7 +5,7 @@
 }
 
 .title {
-  font-size: 3vw;
+  font-size: 48px;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   text-align: center;
@@ -13,15 +13,14 @@
 
 .sub-title {
   font-family: "Raleway", sans-serif;
-  font-size: 2.5vw;
+  font-size: 32px;
   font-weight: 500;
   max-width: 45vw;
   text-align: center;
 }
 
 .homepage-picture {
-  width: 50vw;
-  height: 50vw;
+  width: 75vw;
 }
 
 .modalView {
@@ -41,3 +40,20 @@
   background-color: rgba(48, 47, 47, 0.7);
 }
 
+@media screen and (max-width: 900px) {
+  .title {
+    font-size: 36px;
+    margin-top: 24px;
+  }
+
+  .sub-title {
+    font-size: 24px;
+    max-width: 80%;
+    margin-top: 12px;
+  }
+
+  .homepage-picture {
+    margin-top: 24px;
+    width: 100vw;
+  }
+}

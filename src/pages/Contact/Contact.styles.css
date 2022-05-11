@@ -1,0 +1,67 @@
+.contact-container {
+  min-height: 88vh;
+}
+
+.team-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8rem;
+}
+
+.team-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.team-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  justify-content: space-between;
+}
+
+.member-profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: black;
+  margin-bottom: 12px;
+  overflow: hidden;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 100%;
+}
+
+.team-list-item > p {
+  font-size: 20px;
+}
+
+.team-list-item > p + .team-list-item > p {
+  margin-top: 8px;
+}
+
+.item-contacts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+  margin-top: 12px;
+}
+
+.item-contacts > a {
+  color: black;
+  transition: color ease 300ms;
+}
+
+.item-contacts > a:hover {
+  color: gray;
+}

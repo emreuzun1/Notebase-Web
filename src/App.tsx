@@ -11,6 +11,7 @@ import { Documentation } from "./pages/Documentation/Documentation";
 import { Home } from "./pages/Home/Home";
 import { Main } from "./pages/Main/Main";
 import Settings from "./components/Settings/Settings";
+import Contact from "./pages/Contact/Contact";
 
 interface PrivateRouteProps {
   children: any;
@@ -27,7 +28,7 @@ function PrivateRoute({ children, redirectPath = "/" }: PrivateRouteProps) {
 
 export const App = () => {
   return (
-    <div style={{}}>
+    <div>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.13.216/build/pdf.worker.min.js">
         <Navbar />
         <ToastContainer />
@@ -49,10 +50,11 @@ export const App = () => {
               </PrivateRoute>
             }
           />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Worker>
       <div className="modalView" id="settings-modal">
-        <Settings />
+        {useSelector((state: State) => state.auth.student) && <Settings />}
       </div>
     </div>
   );

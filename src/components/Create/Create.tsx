@@ -3,16 +3,22 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { GrClose } from "react-icons/gr";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { Document } from "../../Interfaces/Document";
 import { State } from "../../Interfaces/State";
-import { createDocumentApi } from "../../lib/api";
+import { createDocumentApi, giveStudentPointApi } from "../../lib/api";
 import "./Create.style.css";
 import Report from "../Report/Report";
+import Loading from "../Loading/Loading";
+import { Student } from "../../Interfaces/Student";
+import { requestUser } from "../../rxutils/actions";
 
 export const Create = () => {
-  const { student } = useSelector((state: State) => state.auth);
+  const [student, setStudent] = useState<Student>(
+    useSelector((state: State) => state.auth.student!)
+  );
   const file = React.createRef<HTMLInputElement>();
   const [documentation, setDocumentation] = useState<Document>({
     title: "Change Title",
@@ -26,6 +32,8 @@ export const Create = () => {
     user: student!.user.id,
   });
   const [loading, setLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const closeModal = () => {
     const element = document.getElementById("modal");
@@ -42,21 +50,40 @@ export const Create = () => {
       data: formData,
     }).then(async (res) => {
       if (res.data) {
-        await createDocumentApi(documentation, student?.token!).then((res) => {
-          console.log(res);
-          setLoading(false);
-          if (res.status === 201) {
-            toast("Your note has been created!", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              draggable: true,
-              progress: undefined,
-            });
-            closeModal();
+        await createDocumentApi(documentation, student?.token!).then(
+          async (res) => {
+            setLoading(false);
+            if (res.status === 201) {
+              await giveStudentPointApi(
+                student.user.id,
+                student.token,
+                student.user.point + 5
+              ).then((res) => {
+                if (res.status === 200) {
+                  dispatch(requestUser(student.user.id));
+                }
+              });
+              toast("Your note has been created!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+              });
+              toast("You have earned 5 points", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                draggable: true,
+                progress: undefined,
+              });
+              navigate("/main");
+              closeModal();
+            }
           }
-        });
+        );
       } else {
         setLoading(false);
         document.getElementById("report-modal")?.classList.add("isOpen");
@@ -65,13 +92,7 @@ export const Create = () => {
   };
 
   if (loading) {
-    return (
-      <div className="loading-card">
-        <div className="loading-dot" />
-        <div className="loading-dot" />
-        <div className="loading-dot" />
-      </div>
-    );
+    return <Loading text="AI is inspecting your file" />;
   }
 
   return (
@@ -158,6 +179,7 @@ export const Create = () => {
             <div className="pdf-container">
               <input
                 type="file"
+                accept="application/pdf"
                 ref={file}
                 name="file"
                 onChange={(e) =>

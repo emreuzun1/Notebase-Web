@@ -21,3 +21,12 @@ export function requestRegister(inputs: RegisterValues) {
     },
   };
 }
+
+export function requestUser(id: string) {
+  return {
+    type: "GET_STUDENT_REQUEST",
+    payload: {
+      id,
+    },
+  };
+}

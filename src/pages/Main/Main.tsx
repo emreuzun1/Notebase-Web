@@ -88,26 +88,14 @@ export const Main = () => {
                     <img src={require("../../assets/logo.png")} alt="Logo" />
                     <div className={styles.listItemDetail}>
                       <div>
-                        <p>{document.title}</p>
+                        <p>
+                          <strong>{document.title}</strong>
+                        </p>
                         <div style={{ display: "flex" }}>
-                          <p>{document.department}</p>
+                          <p>{document.faculty}</p>
                           <p style={{ marginLeft: 8 }}>
                             ({document.university})
                           </p>
-                        </div>
-                      </div>
-                      <div className={styles.listItemReviews}>
-                        <div className={styles.reviewContainer}>
-                          <AiFillLike size={24} color="black" />
-                          <p>{document.like_count}</p>
-                        </div>
-                        <div className={styles.reviewContainer}>
-                          <AiFillDislike size={24} color="black" />
-                          <p>{document.like_count}</p>
-                        </div>
-                        <div className={styles.reviewContainer}>
-                          <MdReportProblem size={24} color="black" />
-                          <p>{document.like_count}</p>
                         </div>
                       </div>
                     </div>
@@ -121,7 +109,6 @@ export const Main = () => {
       <div className="modalView" id="modal">
         <Create />
       </div>
-      
     </div>
   );
 };

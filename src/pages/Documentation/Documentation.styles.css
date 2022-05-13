@@ -82,6 +82,22 @@
   align-items: center;
 }
 
+.listItemReviews {
+  display: flex;
+}
+
+.reviewContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+}
+
+.review-icon {
+  cursor: pointer;
+  transition: all ease 300ms;
+  
+}
+
 @media screen and (max-width: 960px) {
   .doc-top-container {
     flex-direction: column;

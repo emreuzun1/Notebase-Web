@@ -3,6 +3,7 @@ import fs from "fs";
 
 import { LoginInterface, RegisterValues, Student } from "../Interfaces/Student";
 import { Document } from "../Interfaces/Document";
+import { click } from "@testing-library/user-event/dist/click";
 
 export const register = (values: RegisterValues) => {
   const {
@@ -113,6 +114,43 @@ export const getStudentApi = (id: string) => {
   return axios.get(`https://notebase-api.herokuapp.com/api/student/get/${id}`);
 };
 
+export const editStudentApi = (student: any, token: string) => {
+  const { first_name, last_name, username, faculty } = student;
+  const formdata = new FormData();
+  formdata.append("first_name", first_name);
+  formdata.append("last_name", last_name);
+  formdata.append("username", username);
+  formdata.append("faculty", faculty);
+  console.log(formdata);
+  return fetch(
+    `https://notebase-api.herokuapp.com/api/student/edit/${student.id}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+      body: formdata,
+    }
+  );
+};
+
+export const giveStudentPointApi = (
+  id: string,
+  token: string,
+  point: number
+) => {
+  const formData = new FormData();
+  formData.append("point", point.toString());
+  return axios({
+    method: "PUT",
+    url: `https://notebase-api.herokuapp.com/api/student/edit/${id}`,
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+    data: formData,
+  });
+};
+
 export const editDocumentApi = (document: Document, student: Student) => {
   const formData = new FormData();
   formData.append("course", document.course);
@@ -134,6 +172,36 @@ export const deleteDocumentApi = (document: Document, student: Student) => {
     url: `https://notebase-api.herokuapp.com/api/document/delete/${document.id}`,
     headers: {
       Authorization: `Token ${student.token}`,
+    },
+  });
+};
+
+export const updateDownloadStatus = (
+  id: string,
+  student: Student,
+  document: string,
+  status: boolean
+) => {
+  let has_liked = false,
+    has_disliked = false;
+  if (status) {
+    has_liked = true;
+    has_disliked = false;
+  } else {
+    has_liked = false;
+    has_disliked = true;
+  }
+  return axios({
+    url: `https://notebase-api.herokuapp.com/api/download/edit/${id}`,
+    method: "PUT",
+    headers: {
+      Authorization: `Token ${student.token}`,
+    },
+    data: {
+      has_liked,
+      has_disliked,
+      user: student.user.id,
+      document,
     },
   });
 };

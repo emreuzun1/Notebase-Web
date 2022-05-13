@@ -12,6 +12,8 @@ import { Home } from "./pages/Home/Home";
 import { Main } from "./pages/Main/Main";
 import Settings from "./components/Settings/Settings";
 import Contact from "./pages/Contact/Contact";
+import { useEffect } from "react";
+import { persistor } from "./rxutils";
 
 interface PrivateRouteProps {
   children: any;
@@ -26,7 +28,14 @@ function PrivateRoute({ children, redirectPath = "/" }: PrivateRouteProps) {
   return children;
 }
 
+const exit = async () => {
+  await persistor.purge();
+};
+
 export const App = () => {
+  useEffect(() => {
+    exit();
+  }, []);
   return (
     <div>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.13.216/build/pdf.worker.min.js">
@@ -53,9 +62,9 @@ export const App = () => {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Worker>
-      <div className="modalView" id="settings-modal">
+      {<div className="modalView" id="settings-modal">
         {useSelector((state: State) => state.auth.student) && <Settings />}
-      </div>
+      </div>}
     </div>
   );
 };

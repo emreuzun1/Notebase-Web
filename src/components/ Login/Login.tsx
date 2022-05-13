@@ -3,10 +3,12 @@ import "./Login.styles.css";
 import { GrClose } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { requestLogin } from "../../rxutils/actions";
+import Loading from "../Loading/Loading";
 
 export const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -27,6 +29,10 @@ export const Login = () => {
     dispatch(requestLogin({ username, password }, navigate));
     modalClose();
   };
+
+  if (loading) {
+    return <Loading text="Your data is retrieving" />;
+  }
 
   return (
     <div className="login-card">

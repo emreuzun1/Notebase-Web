@@ -10,18 +10,25 @@ import { useNavigate } from "react-router-dom";
 
 interface IEdit {
   documentation?: DocumentInterface;
+  changeDocument: (doc: DocumentInterface) => void;
 }
 
-const Edit: FC<IEdit> = ({ documentation }) => {
-  const file = React.createRef<HTMLInputElement>();
+const Edit: FC<IEdit> = ({ documentation, changeDocument }) => {
   const [doc, setDocumentation] = useState<DocumentInterface>(documentation!);
   const { student } = useSelector((state: State) => state.auth);
   const navigate = useNavigate();
 
   const editHandle = async () => {
     await editDocumentApi(doc, student!).then((res) => {
-      console.log(res);
+      if (res.status === 200) {
+        closeModal();
+        changeDocument(doc);
+      }
     });
+  };
+
+  const closeModal = () => {
+    document.getElementById("edit-modal")?.classList.remove("isOpen");
   };
 
   const deleteHandle = async () => {
@@ -33,12 +40,7 @@ const Edit: FC<IEdit> = ({ documentation }) => {
   };
   return (
     <div className="card">
-      <div
-        className="close-btn"
-        onClick={() =>
-          document.getElementById("edit-modal")?.classList.remove("isOpen")
-        }
-      >
+      <div className="close-btn" onClick={closeModal}>
         <GrClose size={24} color="black" />
       </div>
       <form
@@ -102,22 +104,6 @@ const Edit: FC<IEdit> = ({ documentation }) => {
               })
             }
           />
-        </div>
-        <div className="card-input-wrapper">
-          <p className="card-input-title">PDF :</p>
-          <div className="pdf-container">
-            <Document file={doc.file}>
-              <Page pageNumber={1} height={90} />
-            </Document>
-            <input
-              type="file"
-              ref={file}
-              name="file"
-              onChange={(e) =>
-                setDocumentation({ ...doc, file: e.target.files![0] })
-              }
-            />
-          </div>
         </div>
         <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
           <button className="card-btn" onClick={editHandle}>

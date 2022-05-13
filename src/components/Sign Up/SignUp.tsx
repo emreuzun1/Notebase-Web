@@ -8,6 +8,7 @@ import "./SignUp.styles.css";
 import { RegisterValues } from "../../Interfaces/Student";
 import { Faculties } from "../../constants/Faculty";
 import { register } from "../../lib/api";
+import Loading from "../Loading/Loading";
 
 export const SignUp = () => {
   const [registerValues, setRegisterValues] = useState<RegisterValues>({
@@ -21,6 +22,7 @@ export const SignUp = () => {
     faculty: "",
     university: "",
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
   const modalClose = () => {
     const modal = document.getElementById("signup");
@@ -28,7 +30,9 @@ export const SignUp = () => {
   };
 
   const registerF = async () => {
+    setLoading(true);
     await register(registerValues).then((res) => {
+      setLoading(false);
       if (res.status === 200) {
         toast("Your account has been created!", {
           position: "top-right",
@@ -42,6 +46,10 @@ export const SignUp = () => {
       }
     });
   };
+
+  if (loading) {
+    return <Loading text="You are creating something new" />;
+  }
 
   return (
     <div className="signup-card">

@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import { LoginInterface, RegisterValues } from "../../Interfaces/Student";
-import { loginApi } from "../../lib/api";
+import { getStudentApi, loginApi } from "../../lib/api";
 
 interface ActionInterface {
   type: string;
@@ -23,6 +23,21 @@ function* userLogin(action: ActionInterface) {
   }
 }
 
-const authSaga = [takeLatest("LOGIN_REQUEST", userLogin)];
+function* getUser(action: any) {
+  try {
+    const { id } = action.payload;
+    const { data, status } = yield call(getStudentApi, id);
+    if (status === 200) {
+      yield put({ type: "GET_STUDENT_SUCCESS", payload: { user: data } });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const authSaga = [
+  takeLatest("LOGIN_REQUEST", userLogin),
+  takeLatest("GET_STUDENT_REQUEST", getUser),
+];
 
 export default authSaga;

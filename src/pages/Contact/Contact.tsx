@@ -39,7 +39,13 @@ const Contact = () => {
             </div>
           </li>
           <li className="team-list-item">
-            <div className="member-profile-pic"></div>
+            <div className="member-profile-pic">
+              <img
+                src="https://media-exp1.licdn.com/dms/image/C4E03AQE60kvfMb-VOg/profile-displayphoto-shrink_400_400/0/1638360900861?e=1657756800&v=beta&t=L1v5QzceKxw8RHrRZd5xhFIJAxIxliQ2teSRXwL-o_k"
+                alt="Emre"
+                className="profile-pic"
+              />
+            </div>
             <p>
               <strong>Ataberk Çeliktaş</strong>
             </p>
@@ -58,25 +64,13 @@ const Contact = () => {
             </div>
           </li>
           <li className="team-list-item">
-            <div className="member-profile-pic"></div>
-            <p>
-              <strong>Aynur Cemre Aka</strong>
-            </p>
-            <p>Artifical Intelligence</p>
-            <div className="item-contacts">
-              <a href="mailto:cemreaka@gmail.com">
-                <GrMail size={24} />
-              </a>
-              <a href="https://www.linkedin.com/in/aynur-cemre-aka-15a79862/">
-                <GrLinkedin size={24} />
-              </a>
-              <a href="https://github.com/cemreaka">
-                <GrGithub size={24} />
-              </a>
+            <div className="member-profile-pic">
+              <img
+                src={require("../../assets/kerem.jpeg")}
+                alt="Emre"
+                className="profile-pic"
+              />
             </div>
-          </li>
-          <li className="team-list-item">
-            <div className="member-profile-pic"></div>
             <p>
               <strong>Keremalp Durdabak</strong>
             </p>
@@ -89,6 +83,30 @@ const Contact = () => {
                 <GrLinkedin size={24} />
               </a>
               <a href="https://github.com/KeremalpDurdabak">
+                <GrGithub size={24} />
+              </a>
+            </div>
+          </li>
+          <li className="team-list-item">
+            <div className="member-profile-pic">
+              <img
+                src={require("../../assets/cemre.jpeg")}
+                alt="Emre"
+                className="profile-pic"
+              />
+            </div>
+            <p>
+              <strong>Aynur Cemre Aka</strong>
+            </p>
+            <p>Artifical Intelligence</p>
+            <div className="item-contacts">
+              <a href="mailto:cemreaka@gmail.com">
+                <GrMail size={24} />
+              </a>
+              <a href="https://www.linkedin.com/in/aynur-cemre-aka-15a79862/">
+                <GrLinkedin size={24} />
+              </a>
+              <a href="https://github.com/cemreaka">
                 <GrGithub size={24} />
               </a>
             </div>

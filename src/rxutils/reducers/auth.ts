@@ -25,6 +25,10 @@ export default (state = initialState, action: ActionInterface) =>
         draft.loading = false;
         break;
       }
+      case "GET_STUDENT_SUCCESS": {
+        draft.student!.user = action.payload.user;
+        break;
+      }
       default:
         return state;
     }

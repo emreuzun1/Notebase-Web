@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
@@ -36,6 +36,10 @@ export const Navbar = () => {
     await persistor.purge();
   };
 
+  useEffect(() => {
+    exit();
+  }, []);
+
   return (
     <nav className="navbar">
       <Link to="/" className="navbar-logo">
@@ -51,18 +55,33 @@ export const Navbar = () => {
       <div className="menu-icon" onClick={handleClick}>
         <i className={click ? "fas fa-times" : "fas fa-bars"} />
       </div>
-      <ul className={click ? "nav-menu active" : "nav-menu"}>
-        <li className="nav-item">
+      <ul className={click ? "nav-menu active" : "nav-menu"} id="nav-menu">
+        <li
+          className="nav-item"
+          onClick={() =>
+            document.getElementById("nav-menu")?.classList.remove("active")
+          }
+        >
           <Link to="/" className="nav-links">
             About
           </Link>
         </li>
-        <li className="nav-item">
+        <li
+          className="nav-item"
+          onClick={() =>
+            document.getElementById("nav-menu")?.classList.remove("active")
+          }
+        >
           <Link to="/main" className="nav-links">
             Notes
           </Link>
         </li>
-        <li className="nav-item">
+        <li
+          className="nav-item"
+          onClick={() =>
+            document.getElementById("nav-menu")?.classList.remove("active")
+          }
+        >
           <Link to="/contact" className="nav-links">
             Contact
           </Link>

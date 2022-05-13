@@ -38,48 +38,6 @@
   border-radius: 4px;
 }
 
-.loading-card {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 50%;
-  display: flex;
-  gap: 4px;
-}
-
-.loading-dot {
-  width: 36px;
-  height: 36px;
-  border-radius: 18px;
-  background-color: var(--orange);
-  animation: loading-anim infinite 1s linear;
-  transition: all;
-  position: relative;
-}
-
-.loading-dot:nth-child(2) {
-  animation-delay: 0.12s;
-}
-
-.loading-dot:nth-child(3) {
-  animation-delay: 0.36s;
-}
-
-@keyframes loading-anim {
-  0% {
-    background-color: var(--orange);
-    top: 0;
-  }
-  50% {
-    background-color: var(--purple);
-    top: -20px;
-  }
-  100% {
-    background-color: var(--orange);
-    top: 0;
-  }
-}
-
 .create-close-btn:hover {
   background-color: rgba(128, 128, 128, 0.404);
 }

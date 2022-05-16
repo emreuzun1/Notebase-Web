@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./Login.styles.css";
 import { GrClose } from "react-icons/gr";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { requestLogin } from "../../rxutils/actions";
 import Loading from "../Loading/Loading";
+import { State } from "../../Interfaces/State";
 
 export const Login = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const { loading } = useSelector((state: State) => state.auth);
 
   const dispatch = useDispatch();
 

@@ -71,6 +71,7 @@
   justify-content: center;
   border-radius: 999px;
   padding: 8px;
+  transition: background-color ease 300ms;
 }
 
 .close-btn:hover {

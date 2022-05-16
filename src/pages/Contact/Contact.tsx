@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import { GrMail, GrLinkedin, GrGithub } from "react-icons/gr";
 
 import "./Contact.styles.css";
 
 const Contact = () => {
+  useEffect(() => {
+    document.getElementById("nav-menu")?.classList.remove("active");
+    document
+      .getElementById("nav-menu-icon")
+      ?.classList.replace("fa-times", "fa-bars");
+  }, []);
   return (
     <div
       className="contact-container"
@@ -10,7 +17,7 @@ const Contact = () => {
         backgroundImage: "linear-gradient(to bottom, #E69B69, #FFFFFF)",
       }}
     >
-      <p className="title">Meet the minds behind Notebase</p>
+      <p className="title">Meet minds behind the Notebase</p>
       <div className="team-wrapper">
         <ul className="team-list">
           <li className="team-list-item">

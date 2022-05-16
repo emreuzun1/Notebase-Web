@@ -13,7 +13,7 @@
 }
 
 .pdf-page {
-  max-width: calc(100% - 2em);
+  max-width: 100%;
 }
 
 .pdf-page canvas {

@@ -32,6 +32,10 @@ export const Main = () => {
 
   useEffect(() => {
     getDocuments();
+    document.getElementById("nav-menu")?.classList.remove("active");
+    document
+      .getElementById("nav-menu-icon")
+      ?.classList.replace("fa-times", "fa-bars");
   }, []);
 
   const searchDocuments = () => {

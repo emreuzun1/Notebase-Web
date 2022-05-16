@@ -53,7 +53,11 @@ export const Navbar = () => {
         <p>Notebase</p>
       </Link>
       <div className="menu-icon" onClick={handleClick}>
-        <i className={click ? "fas fa-times" : "fas fa-bars"} />
+        <i
+          className={click ? "fas fa-times" : "fas fa-bars"}
+          color="white"
+          id="nav-menu-icon"
+        />
       </div>
       <ul className={click ? "nav-menu active" : "nav-menu"} id="nav-menu">
         <li

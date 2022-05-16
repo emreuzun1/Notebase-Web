@@ -1,8 +1,16 @@
+import { useEffect } from "react";
 import { Login } from "../../components/ Login/Login";
 import { SignUp } from "../../components/Sign Up/SignUp";
 import "./Home.styles.css";
 
 export const Home = () => {
+  useEffect(() => {
+    document.getElementById("nav-menu")?.classList.remove("active");
+    document
+      .getElementById("nav-menu-icon")
+      ?.classList.replace("fa-times", "fa-bars");
+  }, []);
+
   return (
     <div
       className="container"
@@ -21,7 +29,6 @@ export const Home = () => {
         alt="Home Page"
         className="homepage-picture"
       />
-      
     </div>
   );
 };

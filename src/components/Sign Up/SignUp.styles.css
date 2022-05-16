@@ -12,7 +12,7 @@
   left: 50%;
   top: 50%;
   max-width: 60vw;
-  max-height: 100%;
+  max-height: 80%;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -62,14 +62,29 @@
 
 .signup-btn {
   width: 25%;
-  height: 40px;
   background-color: var(--blue);
+  transition: background-color ease 300ms;
   color: white;
   border: 0;
   border-radius: 8px;
   font-size: large;
   margin-top: 24px;
   cursor: pointer;
+  padding: 12px 8px;
+}
+
+.signup-credentials {
+  width: 100%;
+  text-align: left;
+  padding-left: 1.5rem;
+}
+
+.signup-credentials > li {
+  font-size: 13px;
+}
+
+.signup-btn:hover {
+  background-color: var(--lightBlue);
 }
 
 @media screen and (max-width: 960px) {

@@ -138,6 +138,10 @@ export const Documentation = () => {
   React.useEffect(() => {
     getDocument();
     checkIsTaken();
+    document.getElementById("nav-menu")?.classList.remove("active");
+    document
+      .getElementById("nav-menu-icon")
+      ?.classList.replace("fa-times", "fa-bars");
   }, []);
 
   React.useEffect(() => {

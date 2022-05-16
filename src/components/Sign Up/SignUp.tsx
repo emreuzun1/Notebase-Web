@@ -9,6 +9,12 @@ import { RegisterValues } from "../../Interfaces/Student";
 import { Faculties } from "../../constants/Faculty";
 import { register } from "../../lib/api";
 import Loading from "../Loading/Loading";
+import {
+  checkForBlank,
+  emailValidator,
+  passwordValidator,
+  usernameValidator,
+} from "../../utils/Regex";
 
 export const SignUp = () => {
   const [registerValues, setRegisterValues] = useState<RegisterValues>({
@@ -30,21 +36,37 @@ export const SignUp = () => {
   };
 
   const registerF = async () => {
-    setLoading(true);
-    await register(registerValues).then((res) => {
-      setLoading(false);
-      if (res.status === 200) {
-        toast("Your account has been created!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-        });
-        modalClose();
-      }
-    });
+    if (
+      !usernameValidator(registerValues.username) ||
+      !emailValidator(registerValues.email) ||
+      !passwordValidator(registerValues.password) ||
+      !checkForBlank(registerValues.faculty) ||
+      !checkForBlank(registerValues.university) ||
+      !checkForBlank(registerValues.department) ||
+      !checkForBlank(registerValues.first_name) ||
+      !checkForBlank(registerValues.last_name)
+    ) {
+      alert("Please check your credentials.");
+      return;
+    } else {
+      setLoading(true);
+      await register(registerValues).then((res) => {
+        setLoading(false);
+        if (res.status === 200) {
+          toast("Your account has been created!", {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: undefined,
+          });
+          modalClose();
+        } else {
+          alert("Please check your credentials.");
+        }
+      });
+    }
   };
 
   if (loading) {
@@ -60,6 +82,9 @@ export const SignUp = () => {
       <p className="signup-credentialsText">
         Please fill the credentials to sign up
       </p>
+      <p style={{ marginTop: 8, fontSize: 13, color: "darkred" }}>
+        All of the fields are required!
+      </p>
       <form className="card-form">
         <div className="signup-fullnameWrapper">
           <input
@@ -67,6 +92,7 @@ export const SignUp = () => {
             className="signup-input"
             placeholder="First name"
             value={registerValues.first_name}
+            required
             onChange={(e) =>
               setRegisterValues({
                 ...registerValues,
@@ -79,6 +105,7 @@ export const SignUp = () => {
             className="signup-input"
             placeholder="Last name"
             value={registerValues.last_name}
+            required
             onChange={(e) =>
               setRegisterValues({
                 ...registerValues,
@@ -89,6 +116,7 @@ export const SignUp = () => {
         </div>
         <input
           type="email"
+          required
           className="signup-input"
           placeholder="Mail"
           value={registerValues.email}
@@ -98,6 +126,7 @@ export const SignUp = () => {
         />
         <input
           type="text"
+          required
           className="signup-input"
           placeholder="Username"
           value={registerValues.username}
@@ -105,7 +134,11 @@ export const SignUp = () => {
             setRegisterValues({ ...registerValues, username: e.target.value })
           }
         />
+        <ul className="signup-credentials">
+          <li>At least 8 characters</li>
+        </ul>
         <input
+          required
           type="password"
           className="signup-input"
           placeholder="Password"
@@ -114,8 +147,14 @@ export const SignUp = () => {
             setRegisterValues({ ...registerValues, password: e.target.value })
           }
         />
+        <ul className="signup-credentials">
+          <li>At least 8 characters</li>
+          <li>At least 1 big and small letter</li>
+          <li>At least 1 number</li>
+        </ul>
         <input
           type="text"
+          required
           className="signup-input"
           placeholder="University"
           value={registerValues.university}
@@ -133,6 +172,7 @@ export const SignUp = () => {
           }
         />
         <input
+          required
           type="text"
           className="signup-input"
           placeholder="Department"

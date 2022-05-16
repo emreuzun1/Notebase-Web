@@ -21,12 +21,7 @@ export const Home = () => {
         alt="Home Page"
         className="homepage-picture"
       />
-      <div className="modalView" id="login">
-        <Login />
-      </div>
-      <div className="modalView" id="signup">
-        <SignUp />
-      </div>
+      
     </div>
   );
 };

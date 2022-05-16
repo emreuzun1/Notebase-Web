@@ -38,12 +38,16 @@
   min-height: 44px;
   padding: 13px;
   text-transform: uppercase;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   width: 100%;
   background-color: var(--purple);
   color: white;
   cursor: pointer;
   border-radius: 4px;
+}
+
+.create_btn:hover {
+  background-color: var(--lightPurple);
 }
 
 .folder {

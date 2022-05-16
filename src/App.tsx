@@ -14,6 +14,8 @@ import Settings from "./components/Settings/Settings";
 import Contact from "./pages/Contact/Contact";
 import { useEffect } from "react";
 import { persistor } from "./rxutils";
+import { Login } from "./components/ Login/Login";
+import { SignUp } from "./components/Sign Up/SignUp";
 
 interface PrivateRouteProps {
   children: any;
@@ -62,9 +64,17 @@ export const App = () => {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Worker>
-      {<div className="modalView" id="settings-modal">
-        {useSelector((state: State) => state.auth.student) && <Settings />}
-      </div>}
+      {
+        <div className="modalView" id="settings-modal">
+          {useSelector((state: State) => state.auth.student) && <Settings />}
+        </div>
+      }
+      <div className="modalView" id="login">
+        <Login />
+      </div>
+      <div className="modalView" id="signup">
+        <SignUp />
+      </div>
     </div>
   );
 };
